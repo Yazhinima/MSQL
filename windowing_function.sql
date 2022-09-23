@@ -148,5 +148,7 @@ select student_id, student_name, student_batch, student_mark,row_number() over(p
 -- 104	mithun	FSDS	60	5	5
 -- 105	manish	FSEE	70	1	1
 
+select * from (select student_id, student_name, student_batch, student_mark,row_number() over(partition by student_batch order by student_mark desc) as 'row_number',
+ dense_rank() over(partition by student_batch order by student_mark desc) as row_denserank from students) as test where row_denserank in (1,2,3);
 -- WRAP UP--------------------------------------------------------------------------------------------------------------------------------
  
